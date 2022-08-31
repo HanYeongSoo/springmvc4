@@ -67,7 +67,7 @@ public class BasicItemController {
      * @ModelAttribute("item") Item item
      * model.addAttribute("item", item); 자동 추가
      */
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV2(@ModelAttribute("item")Item item, Model model) {
         itemRepository.save(item);
         //model.addAttribute("item", item); //자동 추가, 생략 가능
@@ -108,6 +108,14 @@ public class BasicItemController {
         return "redirect:/basic/items/{itemId}";
     }
 
+    /**
+     * PRG - Post/Redirect/Get
+     */
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
+    }
 
 
 }
